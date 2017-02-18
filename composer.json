@@ -1,0 +1,29 @@
+{
+    "name": "starlit/db-data-validation",
+    "type": "library",
+    "description": "Data validator for starlit database entities.",
+    "keywords": ["database", "validation"],
+    "homepage": "http://github.com/starweb/starlit-db-data-validation",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Starweb AB"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "starlit/db": "0.8",
+        "starlit/validation": "~0.1"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "symfony/translation": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {"Starlit\\DbDataValidation\\": "src"}
+    },
+    "suggest": {
+        "symfony/translation": "Allow translation of validator error messages"
+    }
+}
