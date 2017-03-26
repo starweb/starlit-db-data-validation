@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=7.0",
-        "starlit/db": "0.8",
+        "starlit/db": "~0.8",
         "starlit/validation": "~0.1"
 
     },
