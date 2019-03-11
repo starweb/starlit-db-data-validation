@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Starlit\Db;
+namespace Starlit\DbDataValidation\Tests\Mocks;
+
+use Starlit\Db\AbstractDbEntity;
 
 class TestDbEntity extends AbstractDbEntity
 {

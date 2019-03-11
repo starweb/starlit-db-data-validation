@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Starlit\Db;
+namespace Starlit\DbDataValidation\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Starlit\Db\AbstractDbEntity;
 use Starlit\DbDataValidation\DbEntityDataValidator;
+use Starlit\DbDataValidation\Tests\Mocks\TestDbEntity;
 use Starlit\Validation\Validator;
 use Starlit\Validation\ValidatorTranslatorInterface;
 

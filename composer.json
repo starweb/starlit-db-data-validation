@@ -23,6 +23,9 @@
     "autoload": {
         "psr-4": {"Starlit\\DbDataValidation\\": "src"}
     },
+    "autoload-dev": {
+        "psr-4": {"Starlit\\DbDataValidation\\Tests\\": "tests"}
+    },
     "suggest": {
         "symfony/translation": "Allow translation of validator error messages"
     }
