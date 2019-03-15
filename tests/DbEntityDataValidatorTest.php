@@ -1,23 +1,34 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Starlit\Db;
+namespace Starlit\DbDataValidation\Tests;
 
+use PHPUnit\Framework\TestCase;
+use Starlit\Db\AbstractDbEntity;
 use Starlit\DbDataValidation\DbEntityDataValidator;
+use Starlit\DbDataValidation\Tests\Mocks\TestDbEntity;
 use Starlit\Validation\Validator;
 use Starlit\Validation\ValidatorTranslatorInterface;
 
-class DbEntityDataValidatorTest extends \PHPUnit_Framework_TestCase
+class DbEntityDataValidatorTest extends TestCase
 {
-    public function testCreateValidator()
+    public function testCreateValidator(): void
     {
-        $dbEntityDataValidator = new DbEntityDataValidator();
+        $dbEntityDataValidator = (new class extends DbEntityDataValidator {
+            protected function getAdditionalFieldsRuleProperties(AbstractDbEntity $dbEntity): array
+            {
+                return ['foo' => ['required' => true]];
+            }
+        });
         $dbEntity = new TestDbEntity();
         $validator = $dbEntityDataValidator->createValidator($dbEntity);
+        $rulesProperties = $validator->getFieldRuleProperties('foo');
 
         $this->assertInstanceOf(Validator::class, $validator);
+        $this->assertArrayHasKey('required', $rulesProperties);
+        $this->assertTrue($rulesProperties['required']);
     }
 
-    public function testValidateAndSet()
+    public function testValidateAndSet(): void
     {
         $dbEntityDataValidator = new DbEntityDataValidator();
         $dbEntity = new TestDbEntity();
@@ -31,7 +42,7 @@ class DbEntityDataValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($dbEntity->__call('getSomeName'), 'woho');
     }
 
-    public function testValidateAndSetFail()
+    public function testValidateAndSetFail(): void
     {
         $mockTranslator = $this->createMock(ValidatorTranslatorInterface::class);
         $mockTranslator->expects($this->atLeastOnce())
@@ -48,17 +59,4 @@ class DbEntityDataValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($errorMsgs);
         $this->assertNotEquals($dbEntity->__call('getSomeName'), 'wohoaaaaaaa');
     }
-}
-
-class TestDbEntity extends AbstractDbEntity
-{
-    protected static $dbTableName = 'someTable';
-
-    protected static $dbProperties = [
-        'someId' => ['type' => 'int'],
-        'someName' => ['type' => 'string', 'maxLength' => 5, 'required' => true],
-
-    ];
-
-    protected static $primaryDbPropertyKey = 'someId';
 }
