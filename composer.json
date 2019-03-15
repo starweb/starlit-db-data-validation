@@ -5,7 +5,6 @@
     "keywords": ["database", "validation"],
     "homepage": "http://github.com/starweb/starlit-db-data-validation",
     "license": "BSD-3-Clause",
-    "version": "1.0.x-dev",
     "authors": [
         {
             "name": "Starweb AB"
