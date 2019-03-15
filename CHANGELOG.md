@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add strict_types and return type declarations
 - update PHP 7.3 to Travis CI configuration
 - update Travis CI to run tests on PHP 7.3
-- update phpunit/phpunit package to
+- update phpunit/phpunit package to ^7.5
 
 ### Fixed
 - fixes headlines and php version in README.md 
